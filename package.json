@@ -1,0 +1,11 @@
+{
+  "name": "velvet-hour-cover-studio",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node serve.ts",
+    "shots": "node tools/render-shots.mjs",
+    "package": "node main.ts"
+  }
+}
