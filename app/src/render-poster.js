@@ -298,6 +298,25 @@ function drawStarburstSeal(ctx, x, y, radius) {
   ctx.restore();
 }
 
+function drawPortraitEditionBadge(ctx, width, height, unit) {
+  const x = width * .77;
+  const y = height * .014;
+  const w = width * .195;
+  const h = unit * .032;
+
+  ctx.fillStyle = '#071c23dd';
+  ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = GOLD;
+  ctx.lineWidth = .8;
+  ctx.strokeRect(x, y, w, h);
+  ctx.textAlign = 'center';
+  ctx.font = `${unit * .014}px Bebas`;
+  ctx.fillStyle = GOLD;
+  ctx.fillText('VOL. 1 / AFTER HOURS', x + w / 2, y + h * .70);
+
+  drawStarburstSeal(ctx, width * .90, height * .32, unit * .052);
+}
+
 export function drawPosterChrome(ctx, state, width, height) {
   const unit = Math.min(width, height);
   const portrait = height / width > 1.1;
@@ -503,7 +522,9 @@ export function renderCoverPoster(canvas, state, photos, { selected = -1 } = {})
   drawRetroChromeTitle(ctx, state.title, width, height, portrait);
   drawNeonScriptSubtitle(ctx, state, width, height, portrait);
 
-  if (!portrait) {
+  if (portrait) {
+    drawPortraitEditionBadge(ctx, width, height, unit);
+  } else {
     drawStarburstSeal(ctx, width * .895, height * .837, unit * .073);
   }
 

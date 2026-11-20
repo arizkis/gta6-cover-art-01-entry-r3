@@ -108,6 +108,7 @@ export function createCoverState(castId = 'A') {
 
   const afterDark = castId === 'B';
   const goldenHour = castId === 'C';
+  const portraitEyeLine = { lookout: .25, rider: .18, captain: .28 };
 
   return {
     title: afterDark ? 'MIDNIGHT LEDGER' : 'VELVET HOUR',
@@ -126,7 +127,7 @@ export function createCoverState(castId = 'A') {
       name: cast[index][1],
       bio: cast[index][2],
       x: goldenHour && index === 7 ? .85 : 0,
-      y: 0,
+      y: afterDark ? (portraitEyeLine[cast[index][0]] || 0) : 0,
       zoom: 1
     }))
   };
