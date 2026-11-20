@@ -506,7 +506,8 @@ export function renderCoverPoster(canvas, state, photos, { selected = -1 } = {})
     drawGradedPhotoPanel(ctx, photo, panel, boxes[index], state);
 
     const labelBox = { ...boxes[index] };
-    if (!portrait && index <= 2 && labelBox.y + labelBox.h > height * .65) {
+    const square = Math.abs(width / height - 1) < .05;
+    if (!portrait && (index <= 2 || square) && labelBox.y + labelBox.h > height * .65) {
       labelBox.h = height * .65 - labelBox.y;
     }
     drawPanelNameTag(ctx, panel, labelBox, unit);
